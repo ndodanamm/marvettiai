@@ -1,0 +1,7 @@
+{
+  "name": "MARVETTI.AI - Business Enablement Platform",
+  "description": "A South African AI-powered business execution system delivering 12 fixed-price stages of business growth and compliance.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
