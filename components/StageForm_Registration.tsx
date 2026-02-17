@@ -71,26 +71,28 @@ export const StageFormRegistration: React.FC<Props> = ({ initialClientData, onCo
     onComplete({ ...formData, directors, isExisting, niche: formData.niche });
   };
 
+  const inputClasses = "w-full p-5 bg-white dark:bg-slate-950 border border-black/10 dark:border-white/10 rounded-2xl text-slate-900 dark:text-white outline-none focus:border-[#EC1B23] font-bold text-sm shadow-inner transition-colors";
+
   return (
     <form onSubmit={handleSubmit} className="space-y-12 animate-in fade-in duration-500">
       <div className="space-y-8">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-           <h3 className="text-2xl font-black text-white uppercase tracking-tight">Stage 1: Registration Profile</h3>
+           <h3 className="text-2xl font-black text-slate-900 dark:text-white uppercase tracking-tight">Stage 1: Registration Profile</h3>
            <span className="text-[#EC1B23] font-black text-sm tracking-widest bg-red-600/5 px-4 py-1.5 rounded-full border border-red-600/10">R495.00</span>
         </div>
         
-        <div className="flex p-1 bg-slate-950 border border-white/10 rounded-2xl w-full sm:w-fit">
+        <div className="flex p-1 bg-slate-100 dark:bg-slate-950 border border-black/5 dark:border-white/10 rounded-2xl w-full sm:w-fit">
           <button 
             type="button"
             onClick={() => { setIsExisting(false); setFormData({...formData, companyStatus: 'Not Registered'}); }}
-            className={`flex-1 sm:flex-none px-6 py-3 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all ${!isExisting ? 'bg-white text-slate-900 shadow-lg' : 'text-slate-500'}`}
+            className={`flex-1 sm:flex-none px-6 py-3 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all ${!isExisting ? 'bg-white dark:bg-white text-slate-900 shadow-lg' : 'text-slate-500'}`}
           >
             New Company
           </button>
           <button 
             type="button"
             onClick={() => { setIsExisting(true); setFormData({...formData, companyStatus: 'Already Registered'}); }}
-            className={`flex-1 sm:flex-none px-6 py-3 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all ${isExisting ? 'bg-white text-slate-900 shadow-lg' : 'text-slate-500'}`}
+            className={`flex-1 sm:flex-none px-6 py-3 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all ${isExisting ? 'bg-white dark:bg-white text-slate-900 shadow-lg' : 'text-slate-500'}`}
           >
             Existing Entity
           </button>
@@ -105,7 +107,7 @@ export const StageFormRegistration: React.FC<Props> = ({ initialClientData, onCo
                   <input 
                     key={i} required={i === 0}
                     type="text" placeholder={`Option ${i+1}: NAME PTY LTD`}
-                    className="p-5 bg-slate-950 border border-white/10 rounded-2xl text-white outline-none focus:border-[#EC1B23] font-bold text-sm shadow-inner"
+                    className={inputClasses}
                     value={name} onChange={(e) => {
                       const newNames = [...formData.names];
                       newNames[i] = e.target.value;
@@ -118,48 +120,48 @@ export const StageFormRegistration: React.FC<Props> = ({ initialClientData, onCo
           ) : (
             <div className="space-y-2 md:col-span-2">
               <label className="block text-[10px] font-black text-slate-500 uppercase tracking-widest ml-1">Existing Registered Name</label>
-              <input required type="text" placeholder="ENTER REGISTERED COMPANY NAME" className="w-full p-5 bg-slate-950 border border-white/10 rounded-2xl text-white outline-none focus:border-[#EC1B23] font-bold shadow-inner" value={formData.existingName} onChange={e => setFormData({...formData, existingName: e.target.value})} />
+              <input required type="text" placeholder="ENTER REGISTERED COMPANY NAME" className={inputClasses} value={formData.existingName} onChange={e => setFormData({...formData, existingName: e.target.value})} />
             </div>
           )}
 
           <div className="space-y-2">
             <label className="block text-[10px] font-black text-slate-500 uppercase tracking-widest ml-1">Primary Niche</label>
-            <select className="w-full p-5 bg-slate-950 border border-white/10 rounded-2xl text-white outline-none focus:border-[#EC1B23] font-bold appearance-none cursor-pointer" value={formData.niche} onChange={e => setFormData({...formData, niche: e.target.value})}>
-              {NICHES.map(n => <option key={n}>{n.toUpperCase()}</option>)}
+            <select className={inputClasses} value={formData.niche} onChange={e => setFormData({...formData, niche: e.target.value})}>
+              {NICHES.map(n => <option key={n} value={n} className="bg-white dark:bg-slate-950">{n.toUpperCase()}</option>)}
             </select>
           </div>
 
           <div className="space-y-2">
             <label className="block text-[10px] font-black text-slate-500 uppercase tracking-widest ml-1">Short Description</label>
-            <input required type="text" placeholder="e.g. Security services and guarding..." className="w-full p-5 bg-slate-950 border border-white/10 rounded-2xl text-white outline-none focus:border-[#EC1B23] font-bold shadow-inner" value={formData.description} onChange={e => setFormData({...formData, description: e.target.value})} />
+            <input required type="text" placeholder="e.g. Security services and guarding..." className={inputClasses} value={formData.description} onChange={e => setFormData({...formData, description: e.target.value})} />
           </div>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 bg-slate-950/30 p-8 rounded-[2.5rem] border border-white/5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 bg-black/5 dark:bg-slate-950/30 p-8 rounded-[2.5rem] border border-black/5 dark:border-white/5">
           <div className="sm:col-span-2 space-y-2">
              <label className="block text-[10px] font-black text-slate-500 uppercase tracking-widest ml-1">Registered Street Address</label>
-             <input required type="text" className="w-full p-4 bg-slate-950 border border-white/10 rounded-xl text-white outline-none focus:border-[#EC1B23] font-bold text-sm" placeholder="123 Alpha Road" value={formData.address} onChange={e => setFormData({...formData, address: e.target.value})} />
+             <input required type="text" className={inputClasses} placeholder="123 Alpha Road" value={formData.address} onChange={e => setFormData({...formData, address: e.target.value})} />
           </div>
           <div className="space-y-2">
              <label className="block text-[10px] font-black text-slate-500 uppercase tracking-widest ml-1">City</label>
-             <input required type="text" className="w-full p-4 bg-slate-950 border border-white/10 rounded-xl text-white outline-none focus:border-[#EC1B23] font-bold text-sm" placeholder="City" value={formData.city} onChange={e => setFormData({...formData, city: e.target.value})} />
+             <input required type="text" className={inputClasses} placeholder="City" value={formData.city} onChange={e => setFormData({...formData, city: e.target.value})} />
           </div>
           <div className="space-y-2">
              <label className="block text-[10px] font-black text-slate-500 uppercase tracking-widest ml-1">Post Code</label>
-             <input required type="text" className="w-full p-4 bg-slate-950 border border-white/10 rounded-xl text-white outline-none focus:border-[#EC1B23] font-bold text-sm" placeholder="0000" value={formData.postalCode} onChange={e => setFormData({...formData, postalCode: e.target.value})} />
+             <input required type="text" className={inputClasses} placeholder="0000" value={formData.postalCode} onChange={e => setFormData({...formData, postalCode: e.target.value})} />
           </div>
           <div className="sm:col-span-4 space-y-2">
              <label className="block text-[10px] font-black text-slate-500 uppercase tracking-widest ml-1">Province</label>
-             <select className="w-full p-4 bg-slate-950 border border-white/10 rounded-xl text-white outline-none focus:border-[#EC1B23] font-bold appearance-none cursor-pointer text-sm" value={formData.province} onChange={e => setFormData({...formData, province: e.target.value})}>
-               {PROVINCES.map(p => <option key={p} value={p}>{p.toUpperCase()}</option>)}
+             <select className={inputClasses} value={formData.province} onChange={e => setFormData({...formData, province: e.target.value})}>
+               {PROVINCES.map(p => <option key={p} value={p} className="bg-white dark:bg-slate-950">{p.toUpperCase()}</option>)}
              </select>
           </div>
         </div>
       </div>
 
       <div className="space-y-8">
-        <div className="flex items-center justify-between border-b border-white/5 pb-6">
-          <h3 className="text-xl font-black text-white uppercase tracking-tight">Directors ({directors.length})</h3>
+        <div className="flex items-center justify-between border-b border-black/5 dark:border-white/5 pb-6">
+          <h3 className="text-xl font-black text-slate-900 dark:text-white uppercase tracking-tight">Directors ({directors.length})</h3>
           <button type="button" onClick={addDirector} className="px-5 py-2.5 bg-[#EC1B23] rounded-xl text-[10px] font-black text-white hover:scale-105 active:scale-95 transition-all uppercase tracking-widest shadow-lg shadow-red-500/20">
             + New Member
           </button>
@@ -167,9 +169,9 @@ export const StageFormRegistration: React.FC<Props> = ({ initialClientData, onCo
 
         <div className="space-y-8">
           {directors.map((d, index) => (
-            <div key={d.id} className="p-8 md:p-10 bg-slate-950/40 border border-white/5 rounded-[3rem] relative animate-in zoom-in-95 duration-300">
+            <div key={d.id} className="p-8 md:p-10 bg-black/[0.02] dark:bg-slate-950/40 border border-black/5 dark:border-white/5 rounded-[3rem] relative animate-in zoom-in-95 duration-300">
               {directors.length > 1 && (
-                <button type="button" onClick={() => removeDirector(d.id)} className="absolute top-8 right-8 text-slate-500 hover:text-[#EC1B23] transition-colors p-2 hover:bg-white/5 rounded-full">
+                <button type="button" onClick={() => removeDirector(d.id)} className="absolute top-8 right-8 text-slate-500 hover:text-[#EC1B23] transition-colors p-2 hover:bg-black/5 dark:hover:bg-white/5 rounded-full">
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M6 18L18 6M6 6l12 12"/></svg>
                 </button>
               )}
@@ -181,33 +183,33 @@ export const StageFormRegistration: React.FC<Props> = ({ initialClientData, onCo
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
                    <label className="text-[9px] font-black text-slate-600 uppercase tracking-widest block ml-1">Full Legal Name</label>
-                   <input required className="w-full p-4 bg-slate-950 border border-white/10 rounded-xl text-white font-bold text-xs outline-none focus:border-[#EC1B23] shadow-inner" value={d.fullName} onChange={e => updateDirector(d.id, 'fullName', e.target.value)} />
+                   <input required className={inputClasses} value={d.fullName} onChange={e => updateDirector(d.id, 'fullName', e.target.value)} />
                 </div>
                 <div className="space-y-2">
                    <label className="text-[9px] font-black text-slate-600 uppercase tracking-widest block ml-1">ID / Passport</label>
-                   <input required className="w-full p-4 bg-slate-950 border border-white/10 rounded-xl text-white font-bold text-xs outline-none focus:border-[#EC1B23] shadow-inner" value={d.idNumber} onChange={e => updateDirector(d.id, 'idNumber', e.target.value)} />
+                   <input required className={inputClasses} value={d.idNumber} onChange={e => updateDirector(d.id, 'idNumber', e.target.value)} />
                 </div>
                 <div className="space-y-2">
                    <label className="text-[9px] font-black text-slate-600 uppercase tracking-widest block ml-1">Nationality</label>
-                   <input required className="w-full p-4 bg-slate-950 border border-white/10 rounded-xl text-white font-bold text-xs outline-none focus:border-[#EC1B23] shadow-inner" value={d.nationality} onChange={e => updateDirector(d.id, 'nationality', e.target.value)} />
+                   <input required className={inputClasses} value={d.nationality} onChange={e => updateDirector(d.id, 'nationality', e.target.value)} />
                 </div>
                 <div className="space-y-2">
                    <label className="text-[9px] font-black text-slate-600 uppercase tracking-widest block ml-1">Email</label>
-                   <input required type="email" className="w-full p-4 bg-slate-950 border border-white/10 rounded-xl text-white font-bold text-xs outline-none focus:border-[#EC1B23] shadow-inner" value={d.email} onChange={e => updateDirector(d.id, 'email', e.target.value)} />
+                   <input required type="email" className={inputClasses} value={d.email} onChange={e => updateDirector(d.id, 'email', e.target.value)} />
                 </div>
                 <div className="space-y-2">
                    <label className="text-[9px] font-black text-slate-600 uppercase tracking-widest block ml-1">WhatsApp Cell</label>
-                   <input required type="tel" className="w-full p-4 bg-slate-950 border border-white/10 rounded-xl text-white font-bold text-xs outline-none focus:border-[#EC1B23] shadow-inner" value={d.cell} onChange={e => updateDirector(d.id, 'cell', e.target.value)} />
+                   <input required type="tel" className={inputClasses} value={d.cell} onChange={e => updateDirector(d.id, 'cell', e.target.value)} />
                 </div>
                 
-                <div className="md:col-span-2 mt-4 space-y-6 bg-white/5 p-6 rounded-2xl border border-white/5">
+                <div className="md:col-span-2 mt-4 space-y-6 bg-black/5 dark:bg-white/5 p-6 rounded-2xl border border-black/5 dark:border-white/5">
                    <p className="text-[9px] font-black text-[#EC1B23] uppercase tracking-[0.2em]">Member Residential Address</p>
                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                      <input placeholder="STREET & NO" className="md:col-span-2 w-full p-4 bg-slate-950 border border-white/10 rounded-xl text-white font-bold text-[10px] outline-none focus:border-[#EC1B23]" value={d.address} onChange={e => updateDirector(d.id, 'address', e.target.value)} />
-                      <input placeholder="CITY" className="w-full p-4 bg-slate-950 border border-white/10 rounded-xl text-white font-bold text-[10px] outline-none focus:border-[#EC1B23]" value={d.city} onChange={e => updateDirector(d.id, 'city', e.target.value)} />
-                      <input placeholder="POST CODE" className="w-full p-4 bg-slate-950 border border-white/10 rounded-xl text-white font-bold text-[10px] outline-none focus:border-[#EC1B23]" value={d.postalCode} onChange={e => updateDirector(d.id, 'postalCode', e.target.value)} />
-                      <select className="md:col-span-2 w-full p-4 bg-slate-950 border border-white/10 rounded-xl text-white font-bold text-[10px] outline-none focus:border-[#EC1B23] appearance-none" value={d.province} onChange={e => updateDirector(d.id, 'province', e.target.value)}>
-                        {PROVINCES.map(p => <option key={p} value={p}>{p.toUpperCase()}</option>)}
+                      <input placeholder="STREET & NO" className={inputClasses} value={d.address} onChange={e => updateDirector(d.id, 'address', e.target.value)} />
+                      <input placeholder="CITY" className={inputClasses} value={d.city} onChange={e => updateDirector(d.id, 'city', e.target.value)} />
+                      <input placeholder="POST CODE" className={inputClasses} value={d.postalCode} onChange={e => updateDirector(d.id, 'postalCode', e.target.value)} />
+                      <select className={inputClasses} value={d.province} onChange={e => updateDirector(d.id, 'province', e.target.value)}>
+                        {PROVINCES.map(p => <option key={p} value={p} className="bg-white dark:bg-slate-950">{p.toUpperCase()}</option>)}
                       </select>
                    </div>
                 </div>
@@ -217,20 +219,20 @@ export const StageFormRegistration: React.FC<Props> = ({ initialClientData, onCo
         </div>
       </div>
 
-      <div className="bg-gradient-to-br from-slate-900 to-slate-950 p-10 rounded-[3rem] border border-white/10 space-y-8 shadow-2xl">
+      <div className="bg-slate-100 dark:bg-gradient-to-br dark:from-slate-900 dark:to-slate-950 p-10 rounded-[3rem] border border-black/5 dark:border-white/10 space-y-8 shadow-2xl transition-colors">
          <h4 className="text-[10px] font-black text-slate-500 uppercase tracking-widest text-center">Compliance Awareness Protocol</h4>
          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            <label className="flex items-center gap-5 cursor-pointer group p-6 bg-slate-900/50 rounded-2xl border border-white/5 hover:border-[#EC1B23]/40 transition-all">
-              <input type="checkbox" className="w-6 h-6 rounded-lg bg-slate-950 border-white/20 text-[#EC1B23] focus:ring-[#EC1B23] cursor-pointer" onChange={e => setFormData({...formData, uif: e.target.checked ? 'Yes' : 'No'})} />
+            <label className="flex items-center gap-5 cursor-pointer group p-6 bg-white dark:bg-slate-900/50 rounded-2xl border border-black/5 dark:border-white/5 hover:border-[#EC1B23]/40 transition-all">
+              <input type="checkbox" className="w-6 h-6 rounded-lg bg-slate-100 dark:bg-slate-950 border-black/10 dark:border-white/20 text-[#EC1B23] focus:ring-[#EC1B23] cursor-pointer" onChange={e => setFormData({...formData, uif: e.target.checked ? 'Yes' : 'No'})} />
               <div className="space-y-0.5">
-                 <span className="text-xs font-black text-white uppercase tracking-widest block">UIF Registration?</span>
+                 <span className="text-xs font-black text-slate-900 dark:text-white uppercase tracking-widest block">UIF Registration?</span>
                  <span className="text-[8px] text-slate-500 font-bold uppercase tracking-widest block">Labor Compliance Module</span>
               </div>
             </label>
-            <label className="flex items-center gap-5 cursor-pointer group p-6 bg-slate-900/50 rounded-2xl border border-white/5 hover:border-[#EC1B23]/40 transition-all">
-              <input type="checkbox" className="w-6 h-6 rounded-lg bg-slate-950 border-white/20 text-[#EC1B23] focus:ring-[#EC1B23] cursor-pointer" onChange={e => setFormData({...formData, bank: e.target.checked ? 'Yes' : 'No'})} />
+            <label className="flex items-center gap-5 cursor-pointer group p-6 bg-white dark:bg-slate-900/50 rounded-2xl border border-black/5 dark:border-white/5 hover:border-[#EC1B23]/40 transition-all">
+              <input type="checkbox" className="w-6 h-6 rounded-lg bg-slate-100 dark:bg-slate-950 border-black/10 dark:border-white/20 text-[#EC1B23] focus:ring-[#EC1B23] cursor-pointer" onChange={e => setFormData({...formData, bank: e.target.checked ? 'Yes' : 'No'})} />
               <div className="space-y-0.5">
-                 <span className="text-xs font-black text-white uppercase tracking-widest block">Bank Account?</span>
+                 <span className="text-xs font-black text-slate-900 dark:text-white uppercase tracking-widest block">Bank Account?</span>
                  <span className="text-[8px] text-slate-500 font-bold uppercase tracking-widest block">Facilitation & Setup</span>
               </div>
             </label>
@@ -245,7 +247,7 @@ export const StageFormRegistration: React.FC<Props> = ({ initialClientData, onCo
           <span className="relative z-10">{isExisting ? 'Sync Business Data' : 'Submit Registration • R495'}</span>
           <div className="absolute inset-0 bg-white/20 translate-x-full group-hover:translate-x-0 transition-transform duration-700"></div>
         </button>
-        <div className="flex items-center justify-center gap-4 text-[9px] font-black text-slate-600 uppercase tracking-[0.3em]">
+        <div className="flex items-center justify-center gap-4 text-[9px] font-black text-slate-400 dark:text-slate-600 uppercase tracking-[0.3em]">
            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
            Secured via Marvetti Cloud
            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>

@@ -57,4 +57,5 @@ export interface ApplicationState {
   stages: Record<StageId, StageInfo>;
   isAdminMode: boolean;
   whatsappDraft: string;
+  theme: 'light' | 'dark';
 }

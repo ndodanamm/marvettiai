@@ -61,9 +61,9 @@ export const StageFormService: React.FC<Props> = ({ stageId, stageName, descript
             { id: 'text', label: 'Text Only', price: 'R400', desc: 'Copywriting & Structure' },
             { id: 'design', label: 'Text + Design', price: 'R650', desc: 'Full Branded PDF' }
           ].map(opt => (
-            <button key={opt.id} type="button" onClick={() => setSelectedOption(opt.id)} className={`p-6 rounded-3xl border text-left transition-all ${selectedOption === opt.id ? 'bg-[#EC1B23]/10 border-[#EC1B23] shadow-lg' : 'bg-slate-950 border-white/5 hover:border-white/20'}`}>
+            <button key={opt.id} type="button" onClick={() => setSelectedOption(opt.id)} className={`p-6 rounded-3xl border text-left transition-all ${selectedOption === opt.id ? 'bg-[#EC1B23]/10 border-[#EC1B23] shadow-lg' : 'bg-white dark:bg-slate-950 border-black/5 dark:border-white/5 hover:border-black/20 dark:hover:border-white/20'}`}>
               <div className="flex justify-between items-center mb-2">
-                <span className="text-[10px] font-black text-white uppercase tracking-widest">{opt.label}</span>
+                <span className={`text-[10px] font-black uppercase tracking-widest ${selectedOption === opt.id ? 'text-[#EC1B23]' : 'text-slate-900 dark:text-white'}`}>{opt.label}</span>
                 <span className="text-[#EC1B23] font-black text-[10px]">{opt.price}</span>
               </div>
               <p className="text-[9px] text-slate-500 font-bold uppercase tracking-widest">{opt.desc}</p>
@@ -80,9 +80,9 @@ export const StageFormService: React.FC<Props> = ({ stageId, stageName, descript
             { id: 'simple', label: 'Simple Plan', price: 'R650-R900', desc: 'Funding & Growth Focus' },
             { id: 'complex', label: 'Complex Logic', price: 'R1650-R2500', desc: 'Financial Projections+' }
           ].map(opt => (
-            <button key={opt.id} type="button" onClick={() => setSelectedOption(opt.id)} className={`p-6 rounded-3xl border text-left transition-all ${selectedOption === opt.id ? 'bg-[#EC1B23]/10 border-[#EC1B23] shadow-lg' : 'bg-slate-950 border-white/5 hover:border-white/20'}`}>
+            <button key={opt.id} type="button" onClick={() => setSelectedOption(opt.id)} className={`p-6 rounded-3xl border text-left transition-all ${selectedOption === opt.id ? 'bg-[#EC1B23]/10 border-[#EC1B23] shadow-lg' : 'bg-white dark:bg-slate-950 border-black/5 dark:border-white/5 hover:border-black/20 dark:hover:border-white/20'}`}>
               <div className="flex justify-between items-center mb-2">
-                <span className="text-[10px] font-black text-white uppercase tracking-widest">{opt.label}</span>
+                <span className={`text-[10px] font-black uppercase tracking-widest ${selectedOption === opt.id ? 'text-[#EC1B23]' : 'text-slate-900 dark:text-white'}`}>{opt.label}</span>
                 <span className="text-[#EC1B23] font-black text-[10px]">{opt.price}</span>
               </div>
               <p className="text-[9px] text-slate-500 font-bold uppercase tracking-widest">{opt.desc}</p>
@@ -98,9 +98,9 @@ export const StageFormService: React.FC<Props> = ({ stageId, stageName, descript
         <div className="space-y-6 mb-8">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {items.map(item => (
-              <label key={item} className={`flex items-center gap-4 p-4 rounded-2xl border cursor-pointer transition-all ${checklist.includes(item) ? 'bg-white/5 border-[#EC1B23]' : 'bg-slate-950 border-white/5'}`}>
-                <input type="checkbox" checked={checklist.includes(item)} onChange={() => handleCheck(item)} className="w-5 h-5 rounded border-white/10 bg-slate-900 text-[#EC1B23] focus:ring-[#EC1B23]" />
-                <span className="text-[9px] font-black text-white uppercase tracking-widest">{item}</span>
+              <label key={item} className={`flex items-center gap-4 p-4 rounded-2xl border cursor-pointer transition-all ${checklist.includes(item) ? 'bg-emerald-500/10 border-emerald-500' : 'bg-white dark:bg-slate-950 border-black/5 dark:border-white/5'}`}>
+                <input type="checkbox" checked={checklist.includes(item)} onChange={() => handleCheck(item)} className="w-5 h-5 rounded border-black/10 dark:border-white/10 bg-white dark:bg-slate-900 text-[#EC1B23] focus:ring-[#EC1B23]" />
+                <span className="text-[9px] font-black text-slate-900 dark:text-white uppercase tracking-widest">{item}</span>
               </label>
             ))}
           </div>
@@ -113,7 +113,7 @@ export const StageFormService: React.FC<Props> = ({ stageId, stageName, descript
       return (
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-8">
           {['Single Page', 'Corporate', 'E-commerce', 'App Landing', 'Funnel', 'Directory'].map(type => (
-            <button key={type} type="button" onClick={() => setSelectedOption(type)} className={`p-4 rounded-2xl border text-[9px] font-black uppercase tracking-widest transition-all ${selectedOption === type ? 'bg-[#EC1B23] text-white' : 'bg-slate-950 border-white/5 text-slate-500'}`}>
+            <button key={type} type="button" onClick={() => setSelectedOption(type)} className={`p-4 rounded-2xl border text-[9px] font-black uppercase tracking-widest transition-all ${selectedOption === type ? 'bg-[#EC1B23] text-white border-[#EC1B23]' : 'bg-white dark:bg-slate-950 border-black/5 dark:border-white/5 text-slate-500'}`}>
               {type}
             </button>
           ))}
@@ -125,9 +125,9 @@ export const StageFormService: React.FC<Props> = ({ stageId, stageName, descript
       return (
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-8">
           {['Facebook', 'Instagram', 'LinkedIn', 'TikTok'].map(plat => (
-             <label key={plat} className={`flex flex-col items-center gap-2 p-4 rounded-2xl border cursor-pointer transition-all ${checklist.includes(plat) ? 'bg-emerald-500/10 border-emerald-500' : 'bg-slate-950 border-white/5'}`}>
+             <label key={plat} className={`flex flex-col items-center gap-2 p-4 rounded-2xl border cursor-pointer transition-all ${checklist.includes(plat) ? 'bg-emerald-500/10 border-emerald-500 shadow-md' : 'bg-white dark:bg-slate-950 border-black/5 dark:border-white/5'}`}>
                 <input type="checkbox" className="hidden" checked={checklist.includes(plat)} onChange={() => handleCheck(plat)} />
-                <span className="text-[9px] font-black text-white uppercase tracking-widest">{plat}</span>
+                <span className="text-[9px] font-black text-slate-900 dark:text-white uppercase tracking-widest">{plat}</span>
                 <span className="text-[8px] font-bold text-slate-500">R350+</span>
              </label>
           ))}
@@ -145,16 +145,18 @@ export const StageFormService: React.FC<Props> = ({ stageId, stageName, descript
     return price;
   };
 
+  const inputClasses = "w-full p-8 bg-white dark:bg-slate-950 border border-black/10 dark:border-white/10 rounded-[2.5rem] text-slate-900 dark:text-white font-medium outline-none focus:border-[#EC1B23] transition-all min-h-[160px] resize-none text-sm placeholder:text-slate-400 dark:placeholder:text-slate-700 shadow-inner";
+
   return (
     <form onSubmit={handleSubmit} className="space-y-10 animate-in fade-in duration-700">
       <div className="space-y-4">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-          <h3 className="text-2xl font-black text-white uppercase tracking-tight">{stageName.split('. ')[1]}</h3>
+          <h3 className="text-2xl font-black text-slate-900 dark:text-white uppercase tracking-tight">{stageName.split('. ')[1]}</h3>
           <span className="text-[#EC1B23] font-black text-xs tracking-widest bg-red-600/5 px-4 py-2 rounded-full border border-red-600/10">
             {getPriceLabel()}
           </span>
         </div>
-        <p className="text-slate-400 font-medium leading-relaxed max-w-2xl text-sm">{description}</p>
+        <p className="text-slate-600 dark:text-slate-400 font-medium leading-relaxed max-w-2xl text-sm">{description}</p>
       </div>
 
       <div className="space-y-6">
@@ -167,7 +169,7 @@ export const StageFormService: React.FC<Props> = ({ stageId, stageName, descript
           <textarea
             required={!isCompliance}
             placeholder={isCompliance ? "List any other specific licenses or permits required for your site operations..." : "Tell us exactly what you need for this stage..."}
-            className="w-full p-8 bg-slate-950 border border-white/10 rounded-[2.5rem] text-white font-medium outline-none focus:border-[#EC1B23] transition-all min-h-[160px] resize-none text-sm placeholder:text-slate-700 shadow-inner"
+            className={inputClasses}
             value={instructions}
             onChange={(e) => setInstructions(e.target.value)}
           />
@@ -178,17 +180,17 @@ export const StageFormService: React.FC<Props> = ({ stageId, stageName, descript
         <button
           type="submit"
           disabled={loading}
-          className="w-full py-7 bg-white text-slate-950 font-black rounded-[2rem] hover:bg-[#EC1B23] hover:text-white transition-all shadow-2xl uppercase tracking-[0.2em] text-xs relative overflow-hidden group"
+          className="w-full py-7 bg-slate-900 dark:bg-white text-white dark:text-slate-950 font-black rounded-[2rem] hover:bg-[#EC1B23] hover:text-white transition-all shadow-2xl uppercase tracking-[0.2em] text-xs relative overflow-hidden group"
         >
           <span className="relative z-10">{loading ? 'Submitting Protocol...' : 'Initialize Stage & Submit Details'}</span>
           {!loading && <div className="absolute inset-0 bg-white/10 translate-x-full group-hover:translate-x-0 transition-transform duration-700"></div>}
         </button>
         <div className="flex items-center justify-center gap-4 mt-6">
-           <div className="h-px flex-1 bg-white/5"></div>
-           <p className="text-[9px] font-black text-slate-600 uppercase tracking-[0.3em]">
+           <div className="h-px flex-1 bg-black/5 dark:bg-white/5"></div>
+           <p className="text-[9px] font-black text-slate-400 dark:text-slate-600 uppercase tracking-[0.3em]">
               Protocol {stageId}.0 Sync Enabled
            </p>
-           <div className="h-px flex-1 bg-white/5"></div>
+           <div className="h-px flex-1 bg-black/5 dark:bg-white/5"></div>
         </div>
       </div>
     </form>
